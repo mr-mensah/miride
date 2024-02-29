@@ -30,12 +30,12 @@ export default class Car extends BaseModel {
   @column()
   declare imageUrl: string | null
 
-  @belongsTo(() => CarBrand)
+  @belongsTo(() => CarBrand, { localKey: 'brandId', foreignKey: 'id' })
   declare brand: BelongsTo<typeof CarBrand>
 
   @hasMany(() => Rental)
   declare rentals: HasMany<typeof Rental>
 
-  @hasOne(() => CarCategory)
+  @hasOne(() => CarCategory, { localKey: 'categoryId', foreignKey: 'id' })
   declare category: HasOne<typeof CarCategory>
 }
