@@ -18,6 +18,12 @@ export default class Rental extends BaseModel {
   declare carId: number
 
   @column()
+  declare price: number
+
+  @column()
+  declare status: string
+
+  @column()
   declare rentedBy: number
 
   @column()

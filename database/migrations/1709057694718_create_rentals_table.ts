@@ -9,6 +9,15 @@ export default class extends BaseSchema {
       table.integer('car_id').unsigned()
       table.integer('user_id').unsigned()
       table.integer('rented_by').unsigned()
+      table.decimal('price', 8, 2).notNullable()
+      table
+        .enum('status', ['PENDING', 'ACTIVE', 'RETURNED', 'PAID'], {
+          useNative: true,
+          enumName: 'user_account_status',
+          existingType: false,
+        })
+        .notNullable()
+        .defaultTo('PENDING')
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
       table.foreign('car_id').references('cars.id')

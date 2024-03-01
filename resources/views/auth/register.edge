@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register</title>
+</head>
+<body>
+  <h1> Register! </h1>
+  <form method="post" action="{{ route('auth.register')}}">
+    {{ csrfField() }}
+    <input type="text" name="fullName" id="">
+    <input type="email" name="email" id="">
+    <input type="password" name="password" id="">
+    <select name="role" id="">
+        <option value="VENDOR">VENDOR</option>
+        <option value="USER">USER</option>
+    </select>
+    <input type="submit" value="Login">
+  </form>
+</body>
+</html>
