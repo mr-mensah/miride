@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       table.string('description').nullable()
       table.string('name').notNullable()
       table.string('image_url').nullable()
+      table.decimal('price', 8, 2).notNullable().defaultTo(0)
       table.integer('brand_id').unsigned()
       table.integer('category_id').unsigned()
       table.timestamp('created_at').notNullable()

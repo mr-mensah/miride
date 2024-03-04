@@ -22,6 +22,21 @@ export default class Car extends BaseModel {
   declare description: string
 
   @column()
+  declare price: number
+
+  @column()
+  declare seats: number
+
+  @column()
+  declare mileage: number
+
+  @column()
+  declare transmission: string
+
+  @column()
+  declare fuelType: string
+
+  @column()
   declare brandId: number
 
   @column()
@@ -30,7 +45,7 @@ export default class Car extends BaseModel {
   @column()
   declare imageUrl: string | null
 
-  @belongsTo(() => CarBrand, { localKey: 'brandId', foreignKey: 'id' })
+  @belongsTo(() => CarBrand, { localKey: 'id', foreignKey: 'brandId' })
   declare brand: BelongsTo<typeof CarBrand>
 
   @hasMany(() => Rental)

@@ -8,6 +8,12 @@ export default class Rental extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
+  @column.dateTime({ autoCreate: false })
+  declare startedAt: DateTime
+
+  @column.dateTime({ autoCreate: false })
+  declare endedAt: DateTime
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
