@@ -11,6 +11,7 @@ import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 import { CarFactory } from '#database/factories/car_factory'
 import { CarBrandFactory } from '#database/factories/car_brand_factory'
+const UserDashboardController = () => import('#controllers/user/userdashboards_controller')
 const LandingPagesController = () => import('#controllers/landing_pages_controller')
 const AuthController = () => import('#controllers/auth_controller')
 const CarBrandsController = () => import('#controllers/car_brands_controller')
@@ -34,9 +35,9 @@ router
   .as('cars.book')
   .use([middleware.auth(), middleware.userRole({ role: 'user' })])
 
-router.on('/about').render('pages/about').as('about')
-router.on('/services').render('pages/services').as('services')
-router.on('/contact').render('pages/contact').as('contact')
+router.on('/about').render('pages/about', { title: 'about' }).as('about')
+router.on('/services').render('pages/services', { title: 'services' }).as('services')
+router.on('/contact').render('pages/contact', { title: 'contact' }).as('contact')
 
 //   Auth routes
 router.get('/login', [AuthController, 'login']).as('auth.login.create').use(middleware.guest())
@@ -64,7 +65,7 @@ router
 // User Routes
 router
   .group(() => {
-    router.get('/', () => {}).as('home')
+    router.get('/', [UserDashboardController, 'home']).as('home')
     router.get('rentals', () => {}).as('rentals')
     router.get('logout', [AuthController, 'logout']).as('logout')
   })

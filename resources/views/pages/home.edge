@@ -1,4 +1,4 @@
-@home() 
+@home({title: title}) 
   @slot('main')
   <div class="hero-wrap ftco-degree-bg" style="background-image: url('/static/images/Miride.png');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -75,7 +75,7 @@
                   <span class="cat">{{car.brand.name}}</span>
                   <p class="price ml-auto">GH&cent;{{ car.price }} <span>/day</span></p>
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="checkout.html" class="btn btn-primary2 py-2 mr-1">Book now</a> <a href="/car-single/benz.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
+                <p class="d-flex mb-0 d-block"><a href="{{route('cars.book',[car.id])}}" class="btn btn-primary2 py-2 mr-1">Book now</a> <a href="{{route('cars.view',[car.id])}}" class="btn btn-secondary py-2 ml-1">Details</a></p>
               </div>
             </div>
           </div>

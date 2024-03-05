@@ -1,8 +1,10 @@
 import User from '#models/user'
+import { loginValidator, registerValidator } from '#validators/authentication'
 import { HttpContext } from '@adonisjs/core/http'
 
-
 export default class AuthController {
+  redirectTo: { [key: string]: string } = { ADMIN: '/admin', USER: '/user', VENDOR: '/vendor' }
+
   async login({ view, request }: HttpContext) {
     console.log(request.url())
     // return `The URL is ${request.url()}`
@@ -14,31 +16,26 @@ export default class AuthController {
   }
 
   async doLogin({ request, response, auth }: HttpContext) {
-    const { email, password } = request.only(['email', 'password'])
-    const user = await User.verifyCredentials(email, password)
+    const payload = await request.validateUsing(loginValidator)
+
+    const user = await User.verifyCredentials(payload.email, payload.password)
     await auth.use('web').login(user)
 
-    return response.json(user)
-    // response.redirect().toRoute
+    response.redirect().toRoute(this.redirectTo[user!.role])
   }
 
   async doRegister({ request, response, auth }: HttpContext) {
-    const { fullName, email, password, role } = request.only([
-      'fullName',
-      'email',
-      'password',
-      'role',
-    ])
+    const payload = await request.validateUsing(registerValidator)
 
     const user = await User.firstOrCreate(
-      { email: email },
-      { fullName: fullName, password: password, role: role }
+      { email: payload.email },
+      { fullName: payload.fullName, password: payload.password, role: payload.role }
     )
 
     await auth.use('web').login(user)
 
-    return response.json(user.role)
-    // response.redirect().toRoute
+    // return response.json(payload)
+    response.redirect().toRoute(this.redirectTo[user!.role])
   }
 
   async logout({ auth, response }: HttpContext) {
