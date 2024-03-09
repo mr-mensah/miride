@@ -12,10 +12,12 @@ export default class extends BaseSchema {
       table.decimal('price', 8, 2).notNullable().defaultTo(0)
       table.integer('brand_id').unsigned()
       table.integer('category_id').unsigned()
+      table.integer('owner_id').unsigned()
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
       table.foreign('brand_id').references('car_brands.id')
       table.foreign('category_id').references('car_categories.id')
+      table.foreign('owner_id').references('users.id')
     })
   }
 

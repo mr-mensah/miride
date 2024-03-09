@@ -9,7 +9,28 @@ export const validateCreateCar = vine.compile(
     mileage: vine.number().positive(),
     seats: vine.number().positive(),
     price: vine.number().positive(),
-    imageUrl: vine.string().optional(),
+    image: vine.file({
+      size: '1mb',
+      extnames: ['jpg', 'png', 'jpeg', 'bmp'],
+    }),
+    transmission: vine.string(),
+    fuelType: vine.string(),
+    brandId: vine.number().positive(),
+    categoryId: vine.number().positive(),
+  })
+)
+
+export const validateUpdateCar = vine.compile(
+  vine.object({
+    name: vine.string().trim().alphaNumeric(),
+    description: vine.string(),
+    mileage: vine.number().positive(),
+    seats: vine.number().positive(),
+    price: vine.number().positive(),
+    image: vine.file({
+      size: '1mb',
+      extnames: ['jpg', 'png', 'jpeg', 'bmp'],
+    }),
     transmission: vine.string(),
     fuelType: vine.string(),
     brandId: vine.number().positive(),

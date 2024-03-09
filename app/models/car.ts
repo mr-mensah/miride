@@ -4,6 +4,7 @@ import CarBrand from './car_brand.js'
 import type { BelongsTo, HasMany, HasOne } from '@adonisjs/lucid/types/relations'
 import Rental from './rental.js'
 import CarCategory from './car_category.js'
+import User from './user.js'
 
 export default class Car extends BaseModel {
   @column({ isPrimary: true })
@@ -43,10 +44,16 @@ export default class Car extends BaseModel {
   declare categoryId: number
 
   @column()
+  declare ownerId: number
+
+  @column()
   declare imageUrl: string | null
 
   @belongsTo(() => CarBrand, { localKey: 'id', foreignKey: 'brandId' })
   declare brand: BelongsTo<typeof CarBrand>
+
+  @belongsTo(() => User, { localKey: 'id', foreignKey: 'ownerId' })
+  declare owner: BelongsTo<typeof User>
 
   @hasMany(() => Rental)
   declare rentals: HasMany<typeof Rental>
