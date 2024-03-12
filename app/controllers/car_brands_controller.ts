@@ -1,10 +1,14 @@
+import CarBrand from '#models/car_brand'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class CarBrandsController {
   /**
    * Display a list of resource
    */
-  async index({}: HttpContext) {}
+  async index({ view }: HttpContext) {
+    const carBrands = await CarBrand.query().preload('cars')
+    return view.render('admin/brands/index', { carBrands: carBrands })
+  }
 
   /**
    * Display form to create a new record

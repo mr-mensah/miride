@@ -17,6 +17,7 @@ export default class LandingPagesController {
       .preload('brand')
       .preload('category')
       .paginate(page, 3)
+
     cars.baseUrl('/cars')
 
     const pages = new Array(cars.getMeta().lastPage).fill(null).map((_, i) => i + 1)

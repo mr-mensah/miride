@@ -35,18 +35,18 @@ export default class Rental extends BaseModel {
   @column()
   declare userId: number
 
-  @hasOne(() => Car)
+  @hasOne(() => Car, { localKey: 'carId', foreignKey: 'id' })
   declare car: HasOne<typeof Car>
 
   @hasOne(() => User, {
-    localKey: 'rented_by',
+    localKey: 'rentedBy',
     foreignKey: 'id',
   })
   declare rentProvider: HasOne<typeof User>
 
   @belongsTo(() => User, {
-    localKey: 'user_id',
-    foreignKey: 'id',
+    localKey: 'id',
+    foreignKey: 'userId',
   })
   declare user: BelongsTo<typeof User>
 }

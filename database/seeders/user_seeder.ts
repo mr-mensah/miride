@@ -6,18 +6,21 @@ export default class extends BaseSeeder {
     // Write your database queries inside the run method
     await User.createMany([
       {
+        fullName: 'Test User',
         email: 'user@miride.com',
-        password: 'secret',
+        password: 'nosecret',
         role: 'USER',
       },
       {
+        fullName: 'Test Admin',
         email: 'admin@miride.com',
-        password: 'secret',
+        password: 'nosecret',
         role: 'ADMIN',
       },
       {
+        fullName: 'Test Vendor',
         email: 'vendor@miride.com',
-        password: 'secret',
+        password: 'nosecret',
         role: 'VENDOR',
       },
     ])

@@ -16,6 +16,6 @@ export default class CarBrand extends BaseModel {
   @column()
   declare name: string
 
-  @hasMany(() => Car)
+  @hasMany(() => Car, { localKey: 'id', foreignKey: 'brandId' })
   declare cars: HasMany<typeof Car>
 }

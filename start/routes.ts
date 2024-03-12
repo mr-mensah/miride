@@ -11,13 +11,14 @@ import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 import { CarFactory } from '#database/factories/car_factory'
 import { CarBrandFactory } from '#database/factories/car_brand_factory'
+const AdminDashboardController = () => import('#controllers/admin/admindashboards_controller')
+const VendorDashboardController = () => import('#controllers/vendor/vendordashboards_controller')
 const UserDashboardController = () => import('#controllers/user/userdashboards_controller')
 const LandingPagesController = () => import('#controllers/landing_pages_controller')
 const AuthController = () => import('#controllers/auth_controller')
 const CarBrandsController = () => import('#controllers/car_brands_controller')
 const CarCategoriesController = () => import('#controllers/car_categories_controller')
 const CarsController = () => import('#controllers/cars_controller')
-// const AuthController = () => import('#controllers/auth_controller')
 
 router
   .get('/init', async () => {
@@ -51,9 +52,10 @@ router.post('/register', [AuthController, 'doRegister']).as('auth.register')
 // Admin Routes
 router
   .group(() => {
-    router.get('/', () => {}).as('home')
-    router.get('users', () => {}).as('users')
-    router.get('rentals', () => {}).as('rentals')
+    router.get('/', [AdminDashboardController, 'index']).as('home')
+    router.get('users', [AdminDashboardController, 'users']).as('users')
+    router.get('vendors', [AdminDashboardController, 'vendors']).as('vendors')
+    router.get('rentals', [AdminDashboardController, 'rentals']).as('rentals')
     router.resource('car_categories', CarCategoriesController)
     router.resource('car_brands', CarBrandsController)
     router.get('logout', [AuthController, 'logout']).as('logout')
@@ -76,9 +78,9 @@ router
 // Vendor Routes
 router
   .group(() => {
-    router.get('/', () => {}).as('home')
+    router.get('/', [VendorDashboardController, 'index']).as('home')
     router.resource('cars', CarsController)
-    router.get('rentals', () => {}).as('rentals')
+    router.get('rentals', [VendorDashboardController, 'rentals']).as('rentals')
     router.get('logout', [AuthController, 'logout']).as('logout')
   })
   .prefix('/vendor')
