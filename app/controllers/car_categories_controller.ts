@@ -51,5 +51,10 @@ export default class CarCategoriesController {
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
+  async destroy({ params, response }: HttpContext) {
+    const id: number = params.id
+    const carCategory = await CarCategory.findOrFail(id)
+    carCategory.delete()
+    return response.redirect().back()
+  }
 }
