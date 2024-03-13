@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+  data-assets-path="/static/dash/assets/" data-template="vertical-menu-template-free">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+  <title>Miride Vendors</title>
+
+  <meta name="description" content="" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icons. Uncomment required icon fonts -->
+  <link rel="stylesheet" href="/static/dash/fonts/boxicons.css" />
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="/static/dash/css/core.css" class="template-customizer-core-css" />
+  <link rel="stylesheet" href="/static/dash/css/theme-default.css" class="template-customizer-theme-css" />
+  <link rel="stylesheet" href="/static/dash/assets/css/demo.css" />
+
+  <!-- Vendors CSS -->
+  <link rel="stylesheet" href="/static/dash/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+  <link rel="stylesheet" href="/static/dash/libs/apex-charts/apex-charts.css" />
+
+  <!-- Page CSS -->
+
+  <!-- Helpers -->
+  <script src="/static/dash/js/helpers.js"></script>
+
+  <script src="/static/dash/assets/js/config.js"></script>
+</head>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <!-- Menu -->
+
+      <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+        <div class="app-brand demo">
+          <a href="index.html" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">Miride</span>
+          </a>
+
+          <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+          </a>
+        </div>
+
+        <div class="menu-inner-shadow"></div>
+
+        <ul class="menu-inner py-1">
+          <!-- Dashboard -->
+          @if(auth.user.role == "ADMIN")
+          <li class="menu-item">
+            <a href="{{route('admin.home')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-home-circle"></i>
+              <div data-i18n="Analytics">Dashboard</div>
+            </a>
+          </li>
+          <li class="menu-item ">
+            <a href="{{route('admin.car_categories.index')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bxs-car"></i>
+              <div data-i18n="Analytics">Car Categories</div>
+            </a>
+          </li>
+          <li class="menu-item ">
+            <a href="{{route('admin.car_brands.index')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bxs-car-garage"></i>
+              <div data-i18n="Analytics">Car brands</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{route('admin.users')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-user"></i>
+              <div data-i18n="Analytics">Users</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{route('admin.vendors')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-female"></i>
+              <div data-i18n="Analytics">Vendors</div>
+            </a>
+          </li>
+          <li class="menu-item ">
+            <a href="{{route('admin.rentals')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-wallet"></i>
+              <div data-i18n="Analytics">Rentals</div>
+            </a>
+          </li>
+          <li class="menu-item ">
+            <a href="{{route('admin.logout')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-exit"></i>
+              <div data-i18n="Analytics">Logout</div>
+            </a>
+          </li>
+          @end
+
+          @if(auth.user.role == "VENDOR")
+          <li class="menu-item">
+            <a href="{{route('vendor.home')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-home-circle"></i>
+              <div data-i18n="Analytics">Dashboard</div>
+            </a>
+          </li>
+          <li class="menu-item ">
+            <a href="{{route('vendor.cars.index')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bxs-car"></i>
+              <div data-i18n="Analytics">Cars</div>
+            </a>
+          </li>
+
+          <li class="menu-item ">
+            <a href="{{route('vendor.rentals')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-wallet"></i>
+              <div data-i18n="Analytics">Rentals</div>
+            </a>
+          </li>
+          <li class="menu-item ">
+            <a href="{{route('vendor.logout')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bxs-exit"></i>
+              <div data-i18n="Analytics">Logout</div>
+            </a>
+          </li>
+
+          @end
+
+          @if(auth.user.role == "USER")
+          <li class="menu-item">
+            <a href="{{route('user.home')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-home-circle"></i>
+              <div data-i18n="Analytics">Dashboard</div>
+            </a>
+          </li>
+
+          <li class="menu-item ">
+            <a href="{{route('user.rentals')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-wallet"></i>
+              <div data-i18n="Analytics">Rentals</div>
+            </a>
+          </li>
+          <li class="menu-item ">
+            <a href="{{route('user.logout')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bxs-exit"></i>
+              <div data-i18n="Analytics">Logout</div>
+            </a>
+          </li>
+          @end
+
+        </ul>
+      </aside>
+
+      <!-- / Menu -->
+
+      <!-- Layout container -->
+      <div class="layout-page">
+        <!-- Navbar -->
+
+        <nav class=" navbar-expand-xl align-items-center ">
+          <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+            <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+              <i class="bx bx-menu bx-sm"></i>
+            </a>
+          </div>
+        </nav>
+
+        <!-- / Navbar -->
+
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+          <!-- Content -->
+
+          {{{ await $slots.main() }}}
+
+
+          <div class="content-backdrop fade"></div>
+        </div>
+        <!-- Content wrapper -->
+      </div>
+      <!-- / Layout page -->
+    </div>
+
+    {{-- Delete Form and Prompt Modal --}}
+
+    <form action="" method="post" id="deleteForm">
+      {{ csrfField() }}
+    </form>
+
+
+
+    {{-- Delete Form and Prompt Modal --}}
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+
+  <script src="/static/dash/libs/jquery/jquery.js"></script>
+  <script src="/static/dash/libs/popper/popper.js"></script>
+  <script src="/static/dash/js/bootstrap.js"></script>
+  <script src="/static/dash/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+  <script src="/static/dash/assets/js/delete.js"></script>
+  <script src="/static/dash/js/menu.js"></script>
+  <!-- endbuild -->
+
+  <!-- Vendors JS -->
+  <script src="/static/dash/libs/apex-charts/apexcharts.js"></script>
+
+  <!-- Main JS -->
+  <script src="/static/dash/assets/js/main.js"></script>
+
+  <!-- Page JS -->
+  <script src="/static/dash/assets/js/dashboards-analytics.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+    function showDeletePrompt(url, description) {
+      Swal.fire({
+        title: `Do you want to delete ${description}?`,
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          $('#deleteForm').attr('action', `${url}?_method=DELETE`)
+          $('#deleteForm').submit()
+        } 
+      });
+    }
+  </script>
+
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>

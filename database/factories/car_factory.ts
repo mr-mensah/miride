@@ -8,7 +8,8 @@ export const CarFactory = factory
     return {
       name: faker.vehicle.model(),
       imageUrl: faker.internet.url(),
-      description: faker.lorem.sentences(5),
+      description: faker.lorem.sentences(1),
+      price: Number(faker.finance.amount()),
     }
   })
   .relation('brand', () => CarBrand)

@@ -5,6 +5,7 @@ import { compose } from '@adonisjs/core/helpers'
 import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
 import Rental from './rental.js'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
+import Car from './car.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -22,6 +23,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare email: string
 
   @column()
+  declare role: string
+
+  @column()
   declare password: string
 
   @column.dateTime({ autoCreate: true })
@@ -30,9 +34,12 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 
-  @hasMany(() => Rental, { localKey: 'id', foreignKey: 'user_id' })
+  @hasMany(() => Rental, { localKey: 'id', foreignKey: 'userId' })
   declare rentals: HasMany<typeof Rental>
 
-  @hasMany(() => Rental, { localKey: 'id', foreignKey: 'rented_by' })
+  @hasMany(() => Rental, { localKey: 'id', foreignKey: 'rentedBy' })
   declare rentProvided: HasMany<typeof Rental>
+
+  @hasMany(() => Car, { localKey: 'id', foreignKey: 'ownerId' })
+  declare cars: HasMany<typeof Car>
 }

@@ -13,7 +13,7 @@ export default class GuestMiddleware {
   /**
    * The URL to redirect to when user is logged-in
    */
-  redirectTo = '/'
+  redirectTo: { [key: string]: string } = { ADMIN: '/admin', USER: '/user', VENDOR: '/vendor' }
 
   async handle(
     ctx: HttpContext,
@@ -22,7 +22,8 @@ export default class GuestMiddleware {
   ) {
     for (let guard of options.guards || [ctx.auth.defaultGuard]) {
       if (await ctx.auth.use(guard).check()) {
-        return ctx.response.redirect(this.redirectTo, true)
+        const user = await ctx.auth.use(guard).user
+        return ctx.response.redirect(this.redirectTo[user!.role], true)
       }
     }
 

@@ -8,6 +8,12 @@ export default class Rental extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
+  @column.dateTime({ autoCreate: false })
+  declare startedAt: DateTime
+
+  @column.dateTime({ autoCreate: false })
+  declare endedAt: DateTime
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
@@ -18,23 +24,29 @@ export default class Rental extends BaseModel {
   declare carId: number
 
   @column()
+  declare price: number
+
+  @column()
+  declare status: string
+
+  @column()
   declare rentedBy: number
 
   @column()
   declare userId: number
 
-  @hasOne(() => Car)
+  @hasOne(() => Car, { localKey: 'carId', foreignKey: 'id' })
   declare car: HasOne<typeof Car>
 
   @hasOne(() => User, {
-    localKey: 'rented_by',
+    localKey: 'rentedBy',
     foreignKey: 'id',
   })
   declare rentProvider: HasOne<typeof User>
 
   @belongsTo(() => User, {
-    localKey: 'user_id',
-    foreignKey: 'id',
+    localKey: 'id',
+    foreignKey: 'userId',
   })
   declare user: BelongsTo<typeof User>
 }

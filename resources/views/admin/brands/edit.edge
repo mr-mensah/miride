@@ -1,0 +1,46 @@
+@customLayout() 
+    @slot('main')
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-2"><span class="text-muted fw-light">Car Brand /</span> Edit Car Brand</h4>
+{{--  <div class="row mb-4">
+    <div class="col-12">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+        data-bs-target="#modalCenter">
+            <span class="tf-icons bx bx-plus"></span>&nbsp; Create Car Category
+        </button>
+    </div>
+</div>  --}}
+    <div class="row">
+    <div class="col-12">
+        <div class="card">
+            <h5 class="card-header"> Edit Car Brand</h5>
+        <div class="card-body">
+            <form action="{{route('admin.car_brands.update', [carBrand.id])}}?_method=PUT" method="POST">
+                {{ csrfField() }}
+          <div class="row">
+            <div class="col mb-3">
+              <label for="nameWithTitle" class="form-label">Brand Name</label>
+              <input
+                type="text"
+                name="name"
+                id="nameWithTitle"
+                value="{{carBrand.name}}"
+                class="form-control"
+                placeholder="Enter Car Brand Name"
+                required
+              />
+            </div>
+            </div>
+            <div class="row">
+            <div class="col mb-3">
+                <button type="submit" class="btn btn-success">Update Car Brand</button>
+              </div>
+          </div>
+        </form>
+        </div>
+          </div>
+    </div>
+</div>  
+      </div>
+    @end
+@end

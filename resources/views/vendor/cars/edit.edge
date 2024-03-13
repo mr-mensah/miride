@@ -1,0 +1,126 @@
+@customLayout()
+@slot('main')
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-2"><span class="text-muted fw-light">Cars /</span> Edit Car</h4>
+    {{-- <div class="row mb-4">
+        <div class="col-12">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                <span class="tf-icons bx bx-plus"></span>&nbsp; Create Car Category
+            </button>
+        </div>
+    </div> --}}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <h5 class="card-header"> Edit Car</h5>
+                <div class="card-body">
+                    <form action="{{route('vendor.cars.update', [car.id])}}?_method=PUT" method="POST"
+                        enctype="multipart/form-data">
+                        {{ csrfField() }}
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                <label for="nameWithTitle" class="form-label">Car Name</label>
+                                <input type="text" name="name" id="nameWithTitle" value="{{car.name}}"
+                                    class="form-control" placeholder="Enter Car Name" required />
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                <label for="carCategory" class="form-label">Category</label>
+                                <select class="form-select" id="carCategory" aria-label="Car Category" required
+                                    name="categoryId">
+                                    <option>Select Category</option>
+                                    @each(carCategory in carCategories)
+                                    <option value="{{carCategory.id}}" {{ car.categoryId==carCategory.id ? 'selected'
+                                        : '' }}>{{carCategory.name}}</option>
+                                    @end
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                <label for="carBrand" class="form-label">Brand</label>
+                                <select class="form-select" id="carBrand" aria-label="Car Brand" required
+                                    name="brandId">
+                                    <option>Select Brand</option>
+                                    @each(carBrand in carBrands)
+                                    <option value="{{carBrand.id}}" {{ car.brandId==carBrand.id ? 'selected' : '' }}>
+                                        {{carBrand.name}}</option>
+                                    @end
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                <label for="transmission" class="form-label">Transmission</label>
+                                <select class="form-select" id="transmission" aria-label="Transmission" required
+                                    name="transmission">
+                                    <option>Select Transmission</option>
+                                    <option value="MANUAL" {{ car.transmission=='MANUAL' ? 'selected' : '' }}>Manual
+                                    </option>
+                                    <option value="AUTOMATIC" {{ car.transmission=='AUTOMATIC' ? 'selected' : '' }}>
+                                        Automatic</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                <label for="mileage" class="form-label">Mileage</label>
+                                <input type="number" name="mileage" id="mileage" value="{{car.mileage}}"
+                                    class="form-control" placeholder="Enter Car Mileage" required />
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                <label for="fuelType" class="form-label">Fuel Type</label>
+                                <select class="form-select" id="fuelType" aria-label="Fuel Type" required
+                                    name="fuelType">
+                                    <option>Select Fuel Type</option>
+                                    <option value="ELECTRIC" {{ car.fuelType=='ELECTRIC' ? 'selected' : '' }}>Electric
+                                    </option>
+                                    <option value="PETROL" {{ car.fuelType=='PETROL' ? 'selected' : '' }}>Petrol
+                                    </option>
+                                    <option value="DIESEL" {{ car.fuelType=='DIESEL' ? 'selected' : '' }}>Diesel
+                                    </option>
+                                    <option value="HYBRID" {{ car.fuelType=='HYBRID' ? 'selected' : '' }}>Hybrid
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                <label for="seats" class="form-label">No. of Seats</label>
+                                <input type="number" name="seats" id="seats" value="{{car.seats}}" class="form-control"
+                                    placeholder="Enter Number of Seats" required />
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                <label for="price" class="form-label">Price per day</label>
+                                <input type="number" name="price" id="price" value="{{car.price}}" class="form-control"
+                                    placeholder="Enter Price Per Day" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                <label for="image" class="form-label">Car Image</label>
+                                <input class="form-control" type="file" id="image" name="image">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                <div class="card">
+                                    <img class="card-img-top" src="/uploads/{{car.imageUrl}}" alt="Car Image" height="150px" width="auto">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 mb-3">
+                                <label for="description" class="form-label">Car Description</label>
+                                <textarea class="form-control" id="description" rows="3" name="description"
+                                    required>{{car.description}}</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <button type="submit" class="btn btn-success">Update Car</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@end
+@end
