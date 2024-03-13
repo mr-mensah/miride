@@ -67,10 +67,10 @@
            
             <div class="item">
             <div class="car-wrap rounded ftco-animate">
-              <div class="img rounded d-flex align-items-end" style="background-image: url(/static/images/benz250.jpeg);">
+              <div class="img rounded d-flex align-items-end" style="background-image: url(/uploads/{{car.imageUrl}});">
               </div>
               <div class="text">
-                <h2 class="mb-0"><a href="/car-single/benz.html">{{ car.name }}</a></h2>
+                <h2 class="mb-0"><a href="{{route('cars.view',[car.id])}}">{{ car.name }}</a></h2>
                 <div class="d-flex mb-3">
                   <span class="cat">{{car.brand.name}}</span>
                   <p class="price ml-auto">GH&cent;{{ car.price }} <span>/day</span></p>

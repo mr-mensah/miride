@@ -1,22 +1,38 @@
 import Car from '#models/car'
-import cloudinary from '#services/cloudinary_service'
+import CarBrand from '#models/car_brand'
+import CarCategory from '#models/car_category'
 import { validateCreateCar, validateUpdateCar } from '#validators/car'
 import type { HttpContext } from '@adonisjs/core/http'
+import { cuid } from '@adonisjs/core/helpers'
+import app from '@adonisjs/core/services/app'
 
 export default class CarsController {
   /**
    * Display a list of resource
    */
-  async index({ view }: HttpContext) {
-    const cars = await Car.query().orderBy('createdAt', 'desc').paginate(1, 20)
-    return view.render('', { cars: cars })
+  async index({ view, auth }: HttpContext) {
+    const cars = await Car.query()
+      .where('ownerId', auth.user!.id)
+      .orderBy('createdAt', 'desc')
+      .preload('brand')
+      .preload('category')
+      .preload('rentals')
+      .paginate(1, 20)
+    return view.render('vendor/cars/index', {
+      cars: cars,
+    })
   }
 
   /**
    * Display form to create a new record
    */
   async create({ view }: HttpContext) {
-    return view.render('vendor/cars/create')
+    const carCategories = await CarCategory.all()
+    const carBrands = await CarBrand.all()
+    return view.render('vendor/cars/create', {
+      carCategories: carCategories,
+      carBrands: carBrands,
+    })
   }
 
   /**
@@ -27,9 +43,8 @@ export default class CarsController {
 
     //Upload to cloudinary and return url
     try {
-      const cloudinaryResponse = await cloudinary.uploader.upload(payload.image.tmpPath!, {
-        folder: 'miride/cars',
-      })
+      const carImage = payload.image
+      await carImage.move(app.makePath('uploads'), { name: `${cuid()}.${carImage.extname}` })
 
       await Car.create({
         name: payload.name,
@@ -41,13 +56,13 @@ export default class CarsController {
         categoryId: payload.categoryId,
         price: payload.price,
         transmission: payload.transmission,
-        imageUrl: cloudinaryResponse.secure_url,
-        ownerId: auth.user?.id,
+        imageUrl: carImage.fileName!,
+        ownerId: auth.user!.id,
       })
       session.flash({ success: 'Successfully added car' })
-      return response.redirect().back()
+      return response.redirect().toRoute('vendor.cars.index')
     } catch (e) {
-      session.flash({ error: 'Error Uploading Image' })
+      session.flash({ error: e })
       return response.redirect().back()
     }
   }
@@ -65,7 +80,13 @@ export default class CarsController {
    */
   async edit({ params, view }: HttpContext) {
     const car = await Car.findOrFail(params.id)
-    return view.render('vendor/cars/edit', { car: car })
+    const carCategories = await CarCategory.all()
+    const carBrands = await CarBrand.all()
+    return view.render('vendor/cars/edit', {
+      car: car,
+      carCategories: carCategories,
+      carBrands: carBrands,
+    })
   }
 
   /**
