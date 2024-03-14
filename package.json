@@ -58,6 +58,7 @@
     "@adonisjs/static": "^1.1.1",
     "@adonisjs/vite": "^2.0.2",
     "@vinejs/vine": "^1.7.1",
+    "axios": "^1.6.7",
     "better-sqlite3": "^9.4.3",
     "dotenv": "^16.4.5",
     "edge.js": "^6.0.1",
