@@ -1,8 +1,6 @@
 // import type { HttpContext } from '@adonisjs/core/http'
 
 import Car from '#models/car'
-import CarBrand from '#models/car_brand'
-import CarCategory from '#models/car_category'
 import Rental from '#models/rental'
 import User from '#models/user'
 import { HttpContext } from '@adonisjs/core/http'
