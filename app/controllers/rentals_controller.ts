@@ -14,25 +14,25 @@ export default class RentalsController {
   /**
    * Handle form submission for the create action
    */
-  async store({ request }: HttpContext) {}
+  // async store({ request }: HttpContext) {}
 
-  /**
-   * Show individual record
-   */
-  async show({ params }: HttpContext) {}
+  // /**
+  //  * Show individual record
+  //  */
+  // async show({ params }: HttpContext) {}
 
-  /**
-   * Edit individual record
-   */
-  async edit({ params }: HttpContext) {}
+  // /**
+  //  * Edit individual record
+  //  */
+  // async edit({ params }: HttpContext) {}
 
-  /**
-   * Handle form submission for the edit action
-   */
-  async update({ params, request }: HttpContext) {}
+  // /**
+  //  * Handle form submission for the edit action
+  //  */
+  // async update({ params, request }: HttpContext) {}
 
-  /**
-   * Delete record
-   */
-  async destroy({ params }: HttpContext) {}
+  // /**
+  //  * Delete record
+  //  */
+  // async destroy({ params }: HttpContext) {}
 }

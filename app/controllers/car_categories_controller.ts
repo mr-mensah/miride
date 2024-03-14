@@ -27,7 +27,7 @@ export default class CarCategoriesController {
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
+  async show({}: HttpContext) {}
 
   /**
    * Edit individual record
