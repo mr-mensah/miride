@@ -1,12 +1,12 @@
 @home({title: title}) 
   @slot('main')
-  <div class="hero-wrap ftco-degree-bg" style="background-image: url('/static/images/Miride.png');" data-stellar-background-ratio="0.5">
+  <div class="hero-wrap bg-black">
     <div class="overlay"></div>
     <div class="container">
       <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
         <div class="col-lg-8 ftco-animate">
           <div class="text w-100 text-center mb-md-5 pb-md-5">
-            <h1 class="mb-4">Easiest Way To Rent A Car In Ghana</h1>
+            <h1 class="mb-4">Easiest Way For Foreigners To Rent A Car In Ghana</h1>
             <p style="font-size: 18px;">Drive through Ghana like a native with ease, confidence and security</p>
           </div>
         </div>
@@ -43,7 +43,7 @@
                     </div>      
                   </div>
                 </div>
-                <p><a href="car.html" class="btn btn-primary py-3 px-4">Reserve Your Perfect Car</a></p>
+                <p><a href="{{route('auth.register.create')}}" class="btn btn-primary py-3 px-4">Get Started</a></p>
               </div>
             </div>
           </div>
@@ -87,23 +87,6 @@
     </div>
   </section>
 
-  <section class="ftco-section ftco-about">
-    <div class="container">
-      <div class="row no-gutters">
-        <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center;">
-        </div>
-        <div class="col-md-6 wrap-about ftco-animate">
-          <div class="heading-section heading-section-white pl-md-5">
-            <span class="subheading">About us</span>
-            <h2 class="mb-4">Welcome to MiRide</h2>
-
-            <p>Experience the freedom of the open road with our reliable and affordable car rentals, making every journey an unforgettable adventure tailored to your needs</p>
-              <p>Unlock the Road to Adventure: Your journey, Your car, Your way - Rent with confidence</p>
-            <p><a href="{{route('cars')}}" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>  
+  
   @end
 @end

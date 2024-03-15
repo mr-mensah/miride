@@ -1,6 +1,6 @@
 @home({title: title}) 
     @slot('main')
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/static/images/image_1.jpg');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 js-fullheight bg-black">
         <div class="overlay"></div>
         <div class="container">
           <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
@@ -13,22 +13,45 @@
       </section>
   
       <section class="ftco-section ftco-about">
-              <div class="container">
-                  <div class="row no-gutters">
-                      <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center";>
-                      </div>
-                      <div class="col-md-6 wrap-about ftco-animate">
-                <div class="heading-section heading-section-white pl-md-5">
-                    <span class="subheading">About us</span>
-                  <h2 class="mb-4">Welcome to MiRide</h2>
-  
+        <div class="container">
+          <div class="row">
+            <div class="col-12 wrap-about ftco-animate">
+              <div class="heading-section heading-section-white pl-md-5">
+                <span class="subheading">About us</span>
+                <h2 class="mb-4">Welcome to MiRide</h2>
+                <h4 class="text-white text-bold">Problem</h4>
+                <p>Imagine a foreigner who travels to Ghana for tourism or to visit someone. Finding a car to use becomes a challenge sometimes. Issues of fraud and renting out faulty vehicles have been major issues these travellers face</p>
+    
+                <h4 class="text-white text-bold">Solution</h4>
+                <p>Provide a seamless platform for tourists to rent cars to explore Ghana with ease, and contribute to the local economy</p>
+    
+                <h4 class="text-white text-bold">Benefit</h4>
                 <p>Experience the freedom of the open road with our reliable and affordable car rentals, making every journey an unforgettable adventure tailored to your needs</p>
-                <p>Unlock the Road to Adventure: Your journey, Your car, Your way - Rent with confidence</p>
-                  <p><a href="{{route('cars')}}" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
-                </div>
+                  <p>Unlock the Road to Adventure: Your journey, Your car, Your way - Rent with confidence</p>
+                  <h4 class="text-white text-bold">Our Team
+                  </h4>
+                  <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-12 col-xl-6 pl-0">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Dr. (Med) Schandorf Osam-Frimpong</h5>
+                          <p class="card-text"></p><span class="text-black">Backend</span>
+                        </div>
                       </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-12 col-xl-6 pl-0">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Mr. Edmund Mensah</h5>
+                          <p class="card-text"></p><span class="text-black">Frontend</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
               </div>
-          </section>
+            </div>
+          </div>
+        </div>
+      </section> 
     @end
 @end

@@ -5,7 +5,7 @@
     <h4 class="mb-2">Welcome </h4>
     <p>Please sign-in to your account</p>
     @flashMessage('errorsBag')
-    <span  class="mb-4 text-danger"> {{ $message.E_INVALID_CREDENTIALS }} </span>
+    <span  class="mb-4 text-danger"> {{ $message.E_INVALID_CREDENTIALS || " " }} </span>
     @end
     <form id="formAuthentication" class="mb-3" action="{{ route('auth.login') }}" method="POST">
       {{ csrfField() }}
