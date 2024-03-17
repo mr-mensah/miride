@@ -31,9 +31,15 @@ export default class LandingPagesController {
     return view.render('pages/view_car', { car: car, title: 'cars' })
   }
 
-  async bookCar({ view, request }: HttpContext) {
-    const id: number = request.param('id')
-    const car = Car.findOrFail(id)
-    return view.render('pages/view_car', { car: car, title: 'cars' })
+  async bookCar({ view, params }: HttpContext) {
+    const id: number = params.id
+    const car = await Car.query()
+      .where('id', id)
+      .preload('brand')
+      .preload('category')
+      .preload('owner')
+      .preload('rentals')
+      .first()
+    return view.render('user/rentals/create', { car: car, title: 'cars' })
   }
 }

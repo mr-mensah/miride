@@ -8,7 +8,12 @@ export default class VendorDashboardController {
       .where('rentedBy', auth.user!.id)
       .preload('car')
       .preload('user')
-    const cars = await Car.query().where('ownerId', auth.user!.id).orderBy('createdAt', 'desc')
+    const cars = await Car.query()
+      .where('ownerId', auth.user!.id)
+      .orderBy('createdAt', 'desc')
+      .preload('brand')
+      .preload('category')
+      .preload('rentals')
     // .paginate(1, 20)
     return view.render('vendor/home', { cars: cars, rentals: rentals })
   }

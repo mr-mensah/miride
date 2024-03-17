@@ -1,0 +1,77 @@
+@customLayout() 
+    @slot('main')
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">User Dashboard /</span> Rental</h4>
+       
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h5 class="card-header">Edit Rental</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <form action="{{route('user.rentals.update', [rental.id])}}?_method=PUT" method="POST">
+                                    {{ csrfField() }}
+                                    <input type="hidden" name="dailyPrice" id="dailyPrice" value="{{rental.car.price}}">
+                                    <input type="hidden" name="price" id="totalPrice" value="{{rental.price}}">
+                              <div class="row">
+                                <div class="col mb-3">
+                                  <label for="startDate" class="form-label">Pickup Date</label>
+                                  <input
+                                    type="date"
+                                    name="startedAt"
+                                    id="startDate"
+                                    class="form-control"
+                                    placeholder="Enter Start Date"
+                                    value="{{new Date(rental.startedAt).toISOString().substr(0, 10)}}"
+                                    required
+                                  />
+                                </div>
+                                <div class="col mb-3">
+                                    <label for="endDate" class="form-label">Return Date</label>
+                                    <input
+                                      type="date"
+                                      name="endedAt"
+                                      id="endDate"
+                                      class="form-control"
+                                      placeholder="Enter Return Date"
+                                      required
+                                      value="{{new Date(rental.endedAt).toISOString().substr(0, 10)}}"
+                                    />
+                                  </div>
+                                  <div class="col mb-3">
+                                    <label for="status" class="form-label">Status</label>
+                                   <select name="status" id="status" class="form-select" required>
+                                    <option value="PENDING" {{ rental.status == 'PENDING' ? 'selected' : ''}}>PENDING</option>
+                                    <option value="ACTIVE" {{ rental.status == 'ACTIVE' ? 'selected' : ''}}>ACTIVE</option>
+                                    <option value="PAID"  {{ rental.status == 'PAID' ? 'selected' : ''}}>PAID</option>
+                                    <option value="RETURNED"  {{ rental.status == 'RETURNED' ? 'selected' : ''}}>RETURNED</option>
+                                   </select>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                      <h6>No of Days</h6>
+                                      <span id="days">{{rental.price / rental.car.price}}</span>
+                                    </div>
+                                    <div class="col mb-3">
+                                        <h6>Price (GH&cent;)</h6>
+                                        <span id="price">{{rental.price}}</span>
+                                      </div>
+                                    </div>
+                                <div class="row">
+                                <div class="col mb-3">
+                                    <button type="submit" class="btn btn-success" id="saveCategory">Update Car Booking</button>
+                                  </div>
+                              </div>
+                            </form>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @end
+@end

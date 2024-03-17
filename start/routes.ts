@@ -21,6 +21,7 @@ const CarCategoriesController = () => import('#controllers/car_categories_contro
 const CarsController = () => import('#controllers/cars_controller')
 import { sep, normalize } from 'node:path'
 import app from '@adonisjs/core/services/app'
+const RentalsController = () => import('#controllers/rentals_controller')
 
 const PATH_TRAVERSAL_REGEX = /(?:^|[\\/])\.\.(?:[\\/]|$)/
 
@@ -72,7 +73,7 @@ router
 router
   .group(() => {
     router.get('/', [UserDashboardController, 'home']).as('home')
-    router.get('rentals', () => {}).as('rentals')
+    router.resource('rentals', RentalsController)
     router.get('logout', [AuthController, 'logout']).as('logout')
   })
   .prefix('/user')

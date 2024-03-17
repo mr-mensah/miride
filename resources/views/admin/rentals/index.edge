@@ -7,39 +7,40 @@
           <h5 class="card-header"></h5>
           <div class="table-responsive text-nowrap">
             <table class="table">
-                <thead>
-                    <tr>
-                      <th>Date Rented</th>
-                      <th>Date Returned</th>
-                      <th>Car</th>
-                      <th>Price</th>
-                      <th>Rented By</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
+              <thead>
+                <tr>
+                  <th>Car Name</th>
+                  <th>Price</th>
+                  <th>Vendor</th>
+                  <th>Rented By</th>
+                  <th>Date Rented</th>
+                  <th>Return Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>  
+                </tr>
+              </thead>
               <tbody class="table-border-bottom-0">
                 @each(rental in rentals)
                 <tr>
-                    <td>22/01/24</td>
-                    <td>--</td>
-                    <td>Ben C250</td>
-                    <td>gh₵500/day</td>
-                    <td>Bright Wilson</td>
-                    <td><span class="badge bg-label-warning me-1">Rented</td>
-                    <td>
-                      <div class="dropdown">
-                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                          <i class="bx bx-dots-vertical-rounded"></i>
-                        </button>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="javascript:void(0);" onclick="deleteRow(this);"
-                            ><i class="bx bx-trash me-1"></i> Delete</a
-                          >
-                        </div>
+                    <td>{{ rental.car.name }}</td>
+                    <td>{{rental.price}}</td>
+                    <td>{{ rental.rentProvider.fullName }}</td>
+                  <td>{{rental.user.fullName}}</td>
+                  <td>{{rental.startedAt}}</td>
+                  <td>{{rental.endedAt}}</td>
+                  <td>{{rental.status}}</td>
+                
+                  {{--  <td><span class="badge bg-label-success me-1">Verified</span></td> --}}
+                  <td>
+                    <div class="dropdown">
+                      <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                        <i class="bx bx-dots-vertical-rounded"></i>
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{route('user.rentals.show', [rental.id])}}"><i class="bx bx-show me-1"></i> View</a>
                       </div>
-                    </td>
-                  </tr>
+                    </div>
+                </tr>
                 @end
               </tbody>
             </table>

@@ -32,9 +32,7 @@
 	          <li class="nav-item {{ title == 'services' ? 'active' : ''}}"><a href="{{route('services')}}" class="nav-link">Services</a></li>
 	          <li class="nav-item  {{ title == 'cars' ? 'active' : ''}}"><a href="{{route('cars')}}" class="nav-link">Cars</a></li>
 	          <li class="nav-item {{ title == 'contact' ? 'active' : ''}}"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
-            @if(!auth.isAuthenticated) 
-            <li class="nav-item"><a href="{{route('auth.login.create')}}" class="nav-link">Login</a></li>
-            @end
+            <li class="nav-item"><a href="{{route('auth.register.create')}}" class="nav-link">Get Started</a></li>
 	        </ul>
 	      </div>
 	    </div>

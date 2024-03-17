@@ -142,7 +142,14 @@
           </li>
 
           <li class="menu-item ">
-            <a href="{{route('user.rentals')}}" class="menu-link">
+            <a href="{{route('cars')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bxs-car"></i>
+              <div data-i18n="Analytics">Cars</div>
+            </a>
+          </li>
+
+          <li class="menu-item ">
+            <a href="{{route('user.rentals.index')}}" class="menu-link">
               <i class="menu-icon tf-icons bx bx-wallet"></i>
               <div data-i18n="Analytics">Rentals</div>
             </a>
@@ -231,9 +238,31 @@
         if (result.isConfirmed) {
           $('#deleteForm').attr('action', `${url}?_method=DELETE`)
           $('#deleteForm').submit()
-        } 
+        }
       });
     }
+
+    function getDaysAndPrice(pricePerDay, startDate, endDate) {
+      // const startDate = startDate;
+      // const endDate = endDate;
+      const diffInMs = new Date(endDate) - new Date(startDate)
+      const diffInDays = diffInMs / (1000 * 60 * 60 * 24)
+      const price = pricePerDay * diffInDays
+
+      $('#days').text(diffInDays)
+      $('#price').text(price)
+      $('#totalPrice').val(price)
+      console.log(`Days: ${diffInDays}`)
+      console.log(`Price: ${price}`)
+    }
+
+    $(document).on("input", "#endDate", function () {
+      const dailyPrice = $("#dailyPrice").val()
+    const beginDate = $("#startDate").val()
+    const returnDate = $(this).val()
+   getDaysAndPrice(dailyPrice, beginDate, returnDate)
+    
+});
   </script>
 
   <!-- Place this tag in your head or just before your close body tag. -->
