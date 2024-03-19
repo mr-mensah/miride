@@ -1,4 +1,25 @@
 # MiRide
+- [MiRide](#miride)
+  - [Introduction](#introduction)
+    - [Problem](#problem)
+    - [Solution](#solution)
+    - [Benefit](#benefit)
+    - [Live Project](#live-project)
+    - [Blog](#blog)
+    - [Authors](#authors)
+  - [Installation](#installation)
+    - [Pre-requisites](#pre-requisites)
+    - [Installation Process](#installation-process)
+  - [Usage](#usage)
+    - [Screenshots](#screenshots)
+      - [Landing Page](#landing-page)
+      - [User Dashboard](#user-dashboard)
+      - [Update Rental](#update-rental)
+      - [Admin Dashboard -  Delete Item](#admin-dashboard----delete-item)
+      - [Vendor - Add Car](#vendor---add-car)
+  - [Contributing](#contributing)
+  - [Related projects](#related-projects)
+  - [Licensing](#licensing)
 
 ## Introduction
 ### Problem
