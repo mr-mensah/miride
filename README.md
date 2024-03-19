@@ -41,7 +41,7 @@ Find our blog for the project at [url goes here](url_goes_here)
 
 ### Authors
 - Dr.(Med) Schandorf Osam-Frimpong - [LinkedIn]() | [Github](https://gitub.com/osamfrimpong)
-- Mr. Edmund Adanor Mensah  - [LinkedIn]() | [Github]()
+- Mr. Edmund Adanor Mensah  - [LinkedIn](https://www.linkedin.com/in/edmund-mensah-2781861a8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app) | [Github](https://github.com/mr-mensah)
 
 ## Installation
 ### Pre-requisites
