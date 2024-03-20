@@ -37,7 +37,7 @@ Unlock the Road to Adventure: Your journey, Your car, Your way - Rent with confi
 Our project is deployed and is live at [http://142.93.47.175](http://142.93.47.175/)
 
 ### Blog
-Find our blog for the project at [Miride](https://medium.com/@edmundmensah422/the-construction-of-miride-a-journey-8e9a5cc7b291))
+Find our blog for the project at [Miride](https://medium.com/@edmundmensah422/the-construction-of-miride-a-journey-8e9a5cc7b291)
 
 ### Authors
 - Dr.(Med) Schandorf Osam-Frimpong - [LinkedIn]() | [Github](https://gitub.com/osamfrimpong)
