@@ -1,54 +1,57 @@
-@customLayout() 
-    @slot('main')
-    <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">User Dashboard /</span> Rental</h4>
-        <div class="row mb-4">
-            <div class="col-12">
-                <a href="{{route('user.rentals.edit', [rental.id])}}" class="btn btn-primary mt-2">
-                    <span class="tf-icons bx bx-plus"></span>&nbsp; Edit Booking
+@customLayout()
+@slot('main')
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">User Dashboard /</span> Rental</h4>
+    @if(rental.status === "PENDING")
+    <div class="row mb-4">
+        <div class="col-12">
+            <a href="{{route('user.rentals.edit', [rental.id])}}" class="btn btn-primary mt-2">
+                <span class="tf-icons bx bx-plus"></span>&nbsp; Edit Booking
             </a>
-            </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <h5 class="card-header"> Rental Details</h5>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <h6 class="mb-0">Car Name:</h6>
-                                <span>{{rental.car.name}}</span>
-                                <hr>
-                                <h6 class="mb-0">Price Per Day:</h6>
-                                <span>{{rental.car.price}}</span>
-                                <hr>
-                                <h6 class="mb-0">Pick Up Date:</h6>
-                                <span>{{rental.startedAt}}</span>
-                                <hr>
-                                <h6 class="mb-0">Return Date:</h6>
-                                <span>{{rental.endedAt}}</span>
-                                <hr>
-                                <h6 class="mb-0">Price Per Day:</h6>
-                                <span>{{rental.car.price}}</span>
-                                <hr>
-                                <h6 class="mb-0">No. of Days:</h6>
-                                <span>{{rental.price / rental.car.price}}</span>
-                                <hr>
-                                <h6 class="mb-0">Total Price:</h6>
-                                <span>{{rental.price}}</span>
-                                <hr>
-                                <h6 class="mb-0">Status:</h6>
-                                <span>{{rental.status}}</span>
-                                <hr>
-                                <h6 class="mb-0">Rented By:</h6>
-                                <span>{{rental.rentProvider.fullName}}</span>
-                              
-                            </div>
+    </div>
+    @end
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <h5 class="card-header"> Rental Details</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <h6 class="mb-0">Car Name:</h6>
+                            <span>{{rental.car.name}}</span>
+                            <hr>
+                            <h6 class="mb-0">Price Per Day:</h6>
+                            <span>{{rental.car.price}}</span>
+                            <hr>
+                            <h6 class="mb-0">Pick Up Date:</h6>
+                            <span>{{rental.startedAt}}</span>
+                            <hr>
+                            <h6 class="mb-0">Return Date:</h6>
+                            <span>{{rental.endedAt}}</span>
+                            <hr>
+                            <h6 class="mb-0">Price Per Day:</h6>
+                            <span>{{rental.car.price}}</span>
+                            <hr>
+                            <h6 class="mb-0">No. of Days:</h6>
+                            <span>{{rental.price / rental.car.price}}</span>
+                            <hr>
+                            <h6 class="mb-0">Total Price:</h6>
+                            <span>{{rental.price}}</span>
+                            <hr>
+                            <h6 class="mb-0">Status:</h6>
+                            <span>{{rental.status}}</span>
+                            <hr>
+                            <h6 class="mb-0">Rented By:</h6>
+                            <span>{{rental.rentProvider.fullName}}</span>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @end
+</div>
+@end
 @end

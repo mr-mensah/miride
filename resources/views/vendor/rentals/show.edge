@@ -2,13 +2,15 @@
     @slot('main')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">User Dashboard /</span> Rental</h4>
-        <div class="row mb-4">
-            <div class="col-12">
-                <a href="{{route('user.rentals.edit', [rental.id])}}" class="btn btn-primary mt-2">
-                    <span class="tf-icons bx bx-plus"></span>&nbsp; Edit Booking
+        @if(rental.status !== "RETURNED")
+    <div class="row mb-4">
+        <div class="col-12">
+            <a href="{{route('user.rentals.edit', [rental.id])}}" class="btn btn-primary mt-2">
+                <span class="tf-icons bx bx-plus"></span>&nbsp; Edit Booking
             </a>
-            </div>
         </div>
+    </div>
+    @end
         <div class="row">
             <div class="col-12">
                 <div class="card">

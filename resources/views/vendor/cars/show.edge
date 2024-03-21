@@ -1,5 +1,66 @@
 @customLayout() 
     @slot('main')
-        
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-2"><span class="text-muted fw-light">Cars /</span> View Car</h4>
+    
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h5 class="card-header"> Car Details</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <h6 class="mb-0">Car Name:</h6>
+                                <span>{{car.name}}</span>
+                                <hr>
+                                <h6 class="mb-0">Brand Name:</h6>
+                                <span>{{car.brand.name}}</span>
+                                <hr>
+                                <h6 class="mb-0">Category Name:</h6>
+                                <span>{{car.category.name}}</span>
+                                <hr>
+                                <h6 class="mb-0">Price Per Day:</h6>
+                                <span>{{car.price}}</span>
+                                <hr>
+                                <h6 class="mb-0">Rented By:</h6>
+                                <span>{{car.owner.fullName}}</span>
+                                <hr>
+                                <h6 class="mb-0">Description</h6>
+                                <span>{{car.description}}</span>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <h6 class="mb-0">Mileage:</h6>
+                                <span>{{car.mileage}}</span>
+                                <hr>
+                                <h6 class="mb-0">No. of Seats:</h6>
+                                <span>{{car.seats}}</span>
+                                <hr>
+                                <h6 class="mb-0">Transmission Type:</h6>
+                                <span>{{car.transmission}}</span>
+                                <hr>
+                                <h6 class="mb-0">Fuel Type:</h6>
+                                <span>{{car.fuelType}}</span>
+                                <hr>
+                                <h6 class="mb-0">Total Rentals:</h6>
+                                <span>{{car.rentals.length}}</span>
+                                <hr>
+                                <h6 class="mb-0">Car Image:</h6>
+                                <div class="card">
+                                    <img class="card-img-top" src="/uploads/{{car.imageUrl}}" alt="Car Image" height="150px" width="auto">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="{{route('vendor.cars.edit', [car.id])}}" class="btn btn-primary mt-2">
+                                    <span class="tf-icons bx bx-pencil"></span>&nbsp; Edit This Car!
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     @end
 @end

@@ -9,8 +9,6 @@
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
-import { CarFactory } from '#database/factories/car_factory'
-import { CarBrandFactory } from '#database/factories/car_brand_factory'
 const AdminDashboardController = () => import('#controllers/admin/admindashboards_controller')
 const VendorDashboardController = () => import('#controllers/vendor/vendordashboards_controller')
 const UserDashboardController = () => import('#controllers/user/userdashboards_controller')
@@ -25,13 +23,13 @@ const RentalsController = () => import('#controllers/rentals_controller')
 
 const PATH_TRAVERSAL_REGEX = /(?:^|[\\/])\.\.(?:[\\/]|$)/
 
-router
-  .get('/init', async () => {
-    // await CarCategoryFactory.createMany(5)
-    await CarBrandFactory.createMany(4)
-    await CarFactory.createMany(5)
-  })
-  .as('init')
+// router
+//   .get('/init', async () => {
+//     // await CarCategoryFactory.createMany(5)
+//     await CarBrandFactory.createMany(4)
+//     await CarFactory.createMany(5)
+//   })
+//   .as('init')
 
 router.get('/', [LandingPagesController, 'index']).as('home')
 router.get('/cars', [LandingPagesController, 'cars']).as('cars')
@@ -85,7 +83,7 @@ router
   .group(() => {
     router.get('/', [VendorDashboardController, 'index']).as('home')
     router.resource('cars', CarsController)
-    router.get('rentals', [VendorDashboardController, 'rentals']).as('rentals')
+    router.resource('rentals', RentalsController).except(['create', 'destroy'])
     router.get('logout', [AuthController, 'logout']).as('logout')
   })
   .prefix('/vendor')

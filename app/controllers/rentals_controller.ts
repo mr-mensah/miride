@@ -6,12 +6,23 @@ export default class RentalsController {
    * Display a list of resource
    */
   async index({ view, auth }: HttpContext) {
-    const rentals = await Rental.query()
-      .where('userId', auth.user!.id)
-      .preload('car')
-      .preload('user')
-      .preload('rentProvider')
-    return view.render('user/rentals/index', { rentals: rentals })
+    let rentals = []
+    if (auth.user!.role === 'USER') {
+      rentals = await Rental.query()
+        .where('userId', auth.user!.id)
+        .preload('car')
+        .preload('user')
+        .preload('rentProvider')
+    } else {
+      rentals = await Rental.query()
+        .where('rentedBy', auth.user!.id)
+        .preload('car')
+        .preload('user')
+        .preload('rentProvider')
+    }
+    return view.render(auth.user!.role === 'USER' ? 'user/rentals/index' : 'vendor/rentals/index', {
+      rentals: rentals,
+    })
   }
 
   /**
@@ -38,27 +49,31 @@ export default class RentalsController {
   /**
    * Show individual record
    */
-  async show({ params, view }: HttpContext) {
+  async show({ params, view, auth }: HttpContext) {
     const rental = await Rental.query()
       .where('id', params.id)
       .preload('car')
       .preload('user')
       .preload('rentProvider')
       .first()
-    return view.render('user/rentals/show', { rental: rental })
+    return view.render(auth.user!.role === 'USER' ? 'user/rentals/show' : 'vendor/rentals/show', {
+      rental: rental,
+    })
   }
 
   /**
    * Edit individual record
    */
-  async edit({ params, view }: HttpContext) {
+  async edit({ params, view, auth }: HttpContext) {
     const rental = await Rental.query()
       .where('id', params.id)
       .preload('car')
       .preload('user')
       .preload('rentProvider')
       .first()
-    return view.render('user/rentals/edit', { rental: rental })
+    return view.render(auth.user!.role === 'USER' ? 'user/rentals/edit' : 'vendor/rentals/edit', {
+      rental: rental,
+    })
   }
 
   /**

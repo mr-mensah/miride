@@ -33,6 +33,7 @@ export const validateUpdateCar = vine.compile(
         extnames: ['jpg', 'png', 'jpeg', 'bmp'],
       })
       .optional(),
+    imageUrl: vine.string().trim(),
     transmission: vine.string(),
     fuelType: vine.string(),
     brandId: vine.number().positive(),

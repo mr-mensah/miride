@@ -7,7 +7,6 @@ export default class AuthController {
 
   async login({ view, request }: HttpContext) {
     console.log(request.url())
-    // return `The URL is ${request.url()}`
     return view.render('auth/login')
   }
 

@@ -16,7 +16,7 @@ export default class LandingPagesController {
       .orderBy('createdAt', 'desc')
       .preload('brand')
       .preload('category')
-      .paginate(page, 3)
+      .paginate(page, 10)
 
     cars.baseUrl('/cars')
 

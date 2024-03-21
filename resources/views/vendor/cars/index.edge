@@ -42,7 +42,7 @@
                       <i class="bx bx-dots-vertical-rounded"></i>
                     </button>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="{{route('cars.view', [car.id])}}"><i class="bx bx-show me-1"></i> View</a>
+                      <a class="dropdown-item" href="{{route('vendor.cars.show', [car.id])}}"><i class="bx bx-show me-1"></i> View</a>
                       <a class="dropdown-item" href="{{route('vendor.cars.edit', [car.id])}}"><i class="bx bx-pencil me-1"></i> Edit</a>
                       <a class="dropdown-item text-danger" onclick="showDeletePrompt('{{route('vendor.cars.destroy', [car.id])}}', 'car')"><i class="bx bx-trash me-1"></i> Delete</a>
                     </div>
@@ -57,43 +57,6 @@
   </div>
 
 </div>
-{{--  <div class="modal fade" id="modalCenter" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalCenterTitle">Add Car </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-          <form action="{{route('vendor.cars.store')}}" method="POST">
-              {{ csrfField() }}
-        <div class="row">
-          <div class="col mb-3">
-            <label for="nameWithTitle" class="form-label">Car  Name</label>
-            <input
-              type="text"
-              name="name"
-              id="nameWithTitle"
-              class="form-control"
-              placeholder="Enter Car  Name"
-              required
-            />
-          </div>
-          </div>
-          <div class="row">
-          <div class="col mb-3">
-              <button type="submit" class="btn btn-primary" id="saveCategory">Save Car </button>
-            </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>  --}}
+
 @end
 @end

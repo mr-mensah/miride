@@ -104,9 +104,10 @@
                             <i class="bx bx-dots-vertical-rounded"></i>
                           </button>
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{route('user.rentals.show', [rental.id])}}"><i class="bx bx-show me-1"></i> View</a>
-                            <a class="dropdown-item" href="{{route('user.rentals.edit', [rental.id])}}"><i class="bx bx-pencil me-1"></i> Edit</a>
-                            <a class="dropdown-item text-danger" onclick="showDeletePrompt('{{route('user.rentals.destroy', [rental.id])}}', 'rental')"><i class="bx bx-trash me-1"></i> Delete</a>
+                            <a class="dropdown-item" href="{{route('vendor.rentals.show', [rental.id])}}"><i class="bx bx-show me-1"></i> View</a>
+                            @if(rental.status !== "RETURNED") 
+                            <a class="dropdown-item" href="{{route('vendor.rentals.edit', [rental.id])}}"><i class="bx bx-pencil me-1"></i> Edit</a>
+                            @end                          
                           </div>
                         </div>
                     </tr>
@@ -156,7 +157,7 @@
                             <i class="bx bx-dots-vertical-rounded"></i>
                           </button>
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{route('cars.view', [car.id])}}"><i class="bx bx-show me-1"></i> View</a>
+                            <a class="dropdown-item" href="{{route('vendor.cars.show', [car.id])}}"><i class="bx bx-show me-1"></i> View</a>
                             <a class="dropdown-item" href="{{route('vendor.cars.edit', [car.id])}}"><i class="bx bx-pencil me-1"></i> Edit</a>
                             <a class="dropdown-item text-danger" onclick="showDeletePrompt('{{route('vendor.cars.destroy', [car.id])}}', 'car')"><i class="bx bx-trash me-1"></i> Delete</a>
                           </div>

@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <form action="{{route('user.rentals.update', [rental.id])}}?_method=PUT" method="POST">
+                                <form action="{{route('vendor.rentals.update', [rental.id])}}?_method=PUT" method="POST">
                                     {{ csrfField() }}
                                     <input type="hidden" name="dailyPrice" id="dailyPrice" value="{{rental.car.price}}">
                                     <input type="hidden" name="price" id="totalPrice" value="{{rental.price}}">
@@ -25,6 +25,7 @@
                                     placeholder="Enter Start Date"
                                     value="{{new Date(rental.startedAt).toISOString().substr(0, 10)}}"
                                     required
+                                    readonly
                                   />
                                 </div>
                                 <div class="col mb-3">
@@ -36,13 +37,14 @@
                                       class="form-control"
                                       placeholder="Enter Return Date"
                                       required
+                                      readonly
                                       value="{{new Date(rental.endedAt).toISOString().substr(0, 10)}}"
                                     />
                                   </div>
                                   <div class="col mb-3">
                                     <label for="status" class="form-label">Status</label>
                                    <select name="status" id="status" class="form-select" required>
-                                    <option value="PENDING" {{ rental.status == 'PENDING' ? 'selected' : ''}}>PENDING</option>
+                                    {{--  <option value="PENDING" {{ rental.status == 'PENDING' ? 'selected' : ''}}>PENDING</option>  --}}
                                     <option value="ACTIVE" {{ rental.status == 'ACTIVE' ? 'selected' : ''}}>ACTIVE</option>
                                     <option value="PAID"  {{ rental.status == 'PAID' ? 'selected' : ''}}>PAID</option>
                                     <option value="RETURNED"  {{ rental.status == 'RETURNED' ? 'selected' : ''}}>RETURNED</option>

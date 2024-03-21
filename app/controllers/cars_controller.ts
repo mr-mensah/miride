@@ -40,8 +40,6 @@ export default class CarsController {
    */
   async store({ request, response, session, auth }: HttpContext) {
     const payload = await request.validateUsing(validateCreateCar)
-
-    //Upload to cloudinary and return url
     try {
       const carImage = payload.image
       await carImage.move(app.makePath('uploads'), { name: `${cuid()}.${carImage.extname}` })
@@ -71,7 +69,13 @@ export default class CarsController {
    * Show individual record
    */
   async show({ params, view }: HttpContext) {
-    const car = await Car.findOrFail(params.id)
+    const car = await Car.query()
+      .where('id', params.id)
+      .preload('rentals')
+      .preload('brand')
+      .preload('category')
+      .preload('owner')
+      .first()
     return view.render('vendor/cars/show', { car: car })
   }
 
@@ -95,6 +99,18 @@ export default class CarsController {
   async update({ params, request, response }: HttpContext) {
     const id: number = params.id
     const payload = await request.validateUsing(validateUpdateCar)
+    let imageUrl = payload.imageUrl
+
+    if (payload.image) {
+      try {
+        const carImage = payload.image
+        await carImage.move(app.makePath('uploads'), { name: `${cuid()}.${carImage.extname}` })
+        imageUrl = carImage.fileName!
+      } catch (e) {
+        console.log({ error: e })
+      }
+    }
+
     const car = await Car.findOrFail(id)
     await car
       .merge({
@@ -107,7 +123,7 @@ export default class CarsController {
         categoryId: payload.categoryId,
         price: payload.price,
         transmission: payload.transmission,
-        // imageUrl: cloudinaryResponse.secure_url,
+        imageUrl: imageUrl,
       })
       .save()
     return response.redirect().back()
