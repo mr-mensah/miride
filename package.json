@@ -73,3 +73,10 @@
   },
   "prettier": "@adonisjs/prettier-config"
 }
+
+{
+  "scripts": {
+    "build": "Vite build --output public"
+  }
+}
+
